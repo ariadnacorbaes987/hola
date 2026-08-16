@@ -1,0 +1,2147 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@400;700&display=swap');
+
+
+/* ==================================================
+   VARIABLES
+================================================== */
+
+:root {
+
+    --red: #ff2020;
+    --red-dark: #8f0000;
+
+    --black: #050505;
+    --dark: #0c0c0c;
+
+    --white: #f5f5f5;
+
+    --gray: #777;
+    --dark-gray: #222;
+
+}
+
+
+/* ==================================================
+   RESET
+================================================== */
+
+* {
+
+    margin: 0;
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
+
+body {
+
+    background: var(--black);
+
+    color: var(--white);
+
+    font-family: "Space Mono", monospace;
+
+    min-height: 100vh;
+
+    overflow: hidden;
+
+}
+
+
+button {
+
+    font-family: inherit;
+
+}
+
+
+/* ==================================================
+   APP
+================================================== */
+
+#app {
+
+    position: relative;
+
+    width: 100vw;
+
+    height: 100vh;
+
+    overflow: hidden;
+
+}
+
+
+/* ==================================================
+   SCREENS
+================================================== */
+
+.screen {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    display: none;
+
+}
+
+
+.screen.active {
+
+    display: flex;
+
+}
+
+
+/* ==================================================
+   BACKGROUND
+================================================== */
+
+#app {
+
+    background:
+
+        radial-gradient(
+            circle at 50% 45%,
+            #300000 0%,
+            #160000 20%,
+            #090909 60%,
+            #030303 100%
+        );
+
+}
+
+
+.background-grid {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 0;
+
+    opacity: 0.13;
+
+    background-image:
+
+        linear-gradient(
+            rgba(255,255,255,0.08) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0.08) 1px,
+            transparent 1px
+        );
+
+    background-size: 40px 40px;
+
+    transform:
+        perspective(500px)
+        rotateX(55deg)
+        scale(2);
+
+    transform-origin: center bottom;
+
+}
+
+
+.noise {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100;
+
+    pointer-events: none;
+
+    opacity: 0.035;
+
+    background-image:
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            white 3px
+        );
+
+}
+
+
+/* ==================================================
+   PARTICLES
+================================================== */
+
+.particles {
+
+    position: fixed;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: 2;
+
+}
+
+
+.particle {
+
+    position: absolute;
+
+    width: 2px;
+
+    height: 2px;
+
+    background: white;
+
+    animation:
+        floatParticle linear infinite;
+
+}
+
+
+@keyframes floatParticle {
+
+    from {
+
+        transform:
+            translateY(110vh)
+            rotate(0deg);
+
+    }
+
+    to {
+
+        transform:
+            translateY(-10vh)
+            rotate(360deg);
+
+    }
+
+}
+
+
+/* ==================================================
+   CORNERS
+================================================== */
+
+.corner {
+
+    position: absolute;
+
+    z-index: 5;
+
+    color: #666;
+
+    font-size: 0.6rem;
+
+    letter-spacing: 3px;
+
+}
+
+
+.top-left {
+
+    top: 25px;
+
+    left: 30px;
+
+}
+
+
+.top-right {
+
+    top: 25px;
+
+    right: 30px;
+
+}
+
+
+.bottom-left {
+
+    bottom: 25px;
+
+    left: 30px;
+
+}
+
+
+.bottom-right {
+
+    bottom: 25px;
+
+    right: 30px;
+
+}
+
+
+/* ==================================================
+   START
+================================================== */
+
+#start-screen {
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+}
+
+
+.start-content {
+
+    position: relative;
+
+    z-index: 5;
+
+    animation:
+        startAppear 1.2s ease forwards;
+
+}
+
+
+@keyframes startAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(30px)
+            scale(0.95);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+.system-text {
+
+    color: var(--red);
+
+    font-size: 0.7rem;
+
+    letter-spacing: 7px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.main-title {
+
+    font-family: "Anton", Impact, sans-serif;
+
+    font-size:
+        clamp(
+            6rem,
+            20vw,
+            13rem
+        );
+
+    font-style: italic;
+
+    line-height: 0.8;
+
+    letter-spacing: -8px;
+
+    transform: skew(-8deg);
+
+    text-shadow:
+
+        7px 7px 0 var(--red),
+
+        14px 14px 0 white;
+
+}
+
+
+.title-line {
+
+    width: 150px;
+
+    height: 5px;
+
+    margin: 35px auto 20px;
+
+    background: var(--red);
+
+    transform: skew(-20deg);
+
+}
+
+
+.subtitle {
+
+    margin-bottom: 55px;
+
+    color: #ccc;
+
+    font-size: 0.85rem;
+
+    letter-spacing: 7px;
+
+}
+
+
+/* ==================================================
+   BUTTON
+================================================== */
+
+.persona-button {
+
+    border: none;
+
+    outline: none;
+
+    cursor: pointer;
+
+    padding: 17px 55px;
+
+    background: var(--red);
+
+    color: white;
+
+    font-size: 1rem;
+
+    font-weight: bold;
+
+    transform: skew(-10deg);
+
+    box-shadow:
+        8px 8px 0 white;
+
+    transition: 0.2s;
+
+}
+
+
+.persona-button:hover {
+
+    background: #ff3838;
+
+    transform:
+        skew(-10deg)
+        translate(-6px, -6px);
+
+    box-shadow:
+        14px 14px 0 white;
+
+}
+
+
+.persona-button:active {
+
+    transform:
+        skew(-10deg)
+        translate(3px, 3px);
+
+    box-shadow:
+        3px 3px 0 white;
+
+}
+
+
+.persona-button.small {
+
+    padding: 12px 35px;
+
+    font-size: 0.7rem;
+
+}
+
+
+.press-text {
+
+    margin-top: 25px;
+
+    color: #555;
+
+    font-size: 0.6rem;
+
+    letter-spacing: 4px;
+
+}
+
+
+/* ==================================================
+   LOADING
+================================================== */
+
+#loading-screen {
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+}
+
+
+.loading-content {
+
+    width: min(600px, 80%);
+
+}
+
+
+.loading-small {
+
+    margin-bottom: 20px;
+
+    color: var(--red);
+
+    font-size: 0.7rem;
+
+    letter-spacing: 3px;
+
+}
+
+
+.loading-content h2 {
+
+    font-family: "Anton", Impact, sans-serif;
+
+    font-size: 5rem;
+
+    font-style: italic;
+
+}
+
+
+.loading-bar {
+
+    width: 100%;
+
+    height: 8px;
+
+    margin-top: 30px;
+
+    background: #222;
+
+    transform: skew(-15deg);
+
+}
+
+
+#loading-progress {
+
+    width: 0;
+
+    height: 100%;
+
+    background: var(--red);
+
+    transition: width 0.05s linear;
+
+}
+
+
+#loading-percentage {
+
+    margin-top: 15px;
+
+    font-size: 0.7rem;
+
+}
+
+
+/* ==================================================
+   LEVEL UP
+================================================== */
+
+#level-up-screen {
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    background:
+
+        radial-gradient(
+            circle,
+            #550000 0%,
+            #1a0000 35%,
+            #050505 75%
+        );
+
+}
+
+
+.level-up-content {
+
+    animation:
+        levelUpIn 0.8s
+        cubic-bezier(.17,.67,.3,1.4);
+
+}
+
+
+@keyframes levelUpIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(0.3)
+            rotate(-5deg);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1)
+            rotate(0);
+
+    }
+
+}
+
+
+.level-up-content h2 {
+
+    font-family: "Anton", Impact, sans-serif;
+
+    font-size:
+        clamp(
+            5rem,
+            15vw,
+            11rem
+        );
+
+    font-style: italic;
+
+    line-height: 0.8;
+
+    color: white;
+
+    transform: skew(-8deg);
+
+    text-shadow:
+
+        6px 6px 0 var(--red),
+
+        12px 12px 0 white;
+
+}
+
+
+.level-number {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 30px;
+
+    margin: 40px 0;
+
+    font-family: "Anton", Impact, sans-serif;
+
+    font-size: 3rem;
+
+}
+
+
+.level-number .arrow {
+
+    color: var(--red);
+
+}
+
+
+#new-level {
+
+    color: var(--red);
+
+}
+
+
+#level-message {
+
+    color: #aaa;
+
+    letter-spacing: 3px;
+
+    font-size: 0.7rem;
+
+}
+
+
+/* ==================================================
+   MAIN SCREEN
+================================================== */
+
+#main-screen {
+
+    flex-direction: column;
+
+}
+
+
+.top-bar {
+
+    position: relative;
+
+    z-index: 5;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 25px 40px;
+
+    border-bottom: 1px solid #333;
+
+    color: #777;
+
+    font-size: 0.65rem;
+
+    letter-spacing: 2px;
+
+}
+
+
+.top-bar strong {
+
+    color: var(--red);
+
+}
+
+
+/* ==================================================
+   MAIN CONTENT
+================================================== */
+
+.main-content {
+
+    position: relative;
+
+    z-index: 5;
+
+    width: min(1000px, 90%);
+
+    margin: auto;
+
+    padding: 30px 0;
+
+}
+
+
+.greeting {
+
+    margin-bottom: 25px;
+
+}
+
+
+.small-label {
+
+    display: block;
+
+    margin-bottom: 15px;
+
+    color: var(--red);
+
+    font-size: 0.6rem;
+
+    letter-spacing: 4px;
+
+}
+
+
+.greeting h2 {
+
+    font-family: "Anton", Impact, sans-serif;
+
+    font-size:
+        clamp(
+            3.2rem,
+            8vw,
+            7rem
+        );
+
+    font-style: italic;
+
+    line-height: 0.85;
+
+    transform: skew(-7deg);
+
+}
+
+
+.greeting h2 span {
+
+    display: block;
+
+    color: var(--red);
+
+    text-shadow:
+        5px 5px white;
+
+}
+
+
+.greeting p {
+
+    margin-top: 20px;
+
+    color: #888;
+
+    font-size: 0.65rem;
+
+    letter-spacing: 2px;
+
+}
+
+
+/* ==================================================
+   CHARACTER IMAGE
+================================================== */
+
+.character-image {
+
+    position: absolute;
+
+    right: -40px;
+
+    top: 40px;
+
+    width: 180px;
+
+    height: 180px;
+
+    overflow: hidden;
+
+    opacity: 0.75;
+
+    transform:
+        rotate(-5deg)
+        skew(-5deg);
+
+    border-left: 5px solid var(--red);
+
+}
+
+
+.character-image img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+}
+
+
+.character-image.image-missing {
+
+    display: none;
+
+}
+
+
+/* ==================================================
+   CONFIDANT
+================================================== */
+
+.confidant-status {
+
+    width: 100%;
+
+    max-width: 700px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.connection-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-bottom: 7px;
+
+    font-size: 0.6rem;
+
+    letter-spacing: 3px;
+
+}
+
+
+.connection-header strong {
+
+    color: var(--red);
+
+}
+
+
+.connection-bar {
+
+    width: 100%;
+
+    height: 8px;
+
+    background: #222;
+
+    transform: skew(-15deg);
+
+}
+
+
+#connection-progress {
+
+    width: 10%;
+
+    height: 100%;
+
+    background: var(--red);
+
+    transition:
+        width 0.7s
+        cubic-bezier(.17,.67,.3,1.2);
+
+}
+
+
+/* ==================================================
+   MENU
+================================================== */
+
+.menu {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 12px;
+
+    max-width: 700px;
+
+}
+
+
+.menu-button {
+
+    position: relative;
+
+    overflow: hidden;
+
+    border: 2px solid #333;
+
+    padding: 18px 20px;
+
+    background: rgba(0,0,0,0.55);
+
+    color: white;
+
+    text-align: left;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transform: skew(-5deg);
+
+    transition: 0.2s;
+
+}
+
+
+.menu-button span {
+
+    margin-right: 20px;
+
+    color: var(--red);
+
+}
+
+
+.menu-button::after {
+
+    content: "";
+
+    position: absolute;
+
+    z-index: -1;
+
+    inset: 0;
+
+    left: -100%;
+
+    background: var(--red);
+
+    transition: 0.25s;
+
+}
+
+
+.menu-button:hover {
+
+    border-color: white;
+
+    transform:
+        skew(-5deg)
+        translateX(8px);
+
+}
+
+
+.menu-button:hover::after {
+
+    left: 0;
+
+}
+
+
+.menu-button small {
+
+    position: absolute;
+
+    right: 15px;
+
+    color: #666;
+
+    font-size: 0.5rem;
+
+}
+
+
+.secret-menu-button.unlocked {
+
+    border-color: var(--red);
+
+}
+
+
+/* ==================================================
+   PANELS
+================================================== */
+
+.panel {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 20;
+
+    display: none;
+
+    flex-direction: column;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #090909 0%,
+            #180000 100%
+        );
+
+}
+
+
+.panel.active {
+
+    display: flex;
+
+    animation:
+        panelIn 0.4s ease;
+
+}
+
+
+@keyframes panelIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateX(100px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateX(0);
+
+    }
+
+}
+
+
+.panel-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 25px 40px;
+
+    border-bottom: 1px solid #333;
+
+    color: var(--red);
+
+    font-size: 0.7rem;
+
+    letter-spacing: 3px;
+
+}
+
+
+.close-panel {
+
+    border: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 2rem;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+
+.close-panel:hover {
+
+    color: var(--red);
+
+    transform: rotate(90deg);
+
+}
+
+
+.panel-content {
+
+    width: min(1000px, 90%);
+
+    margin: auto;
+
+    padding: 40px 0;
+
+}
+
+
+/* ==================================================
+   MESSAGE
+================================================== */
+
+.message-content {
+
+    max-width: 850px;
+
+}
+
+
+.message-content h2 {
+
+    margin-bottom: 40px;
+
+    font-family: "Anton", Impact, sans-serif;
+
+    font-size:
+        clamp(
+            4rem,
+            10vw,
+            8rem
+        );
+
+    font-style: italic;
+
+    transform: skew(-7deg);
+
+}
+
+
+.typed-message {
+
+    min-height: 220px;
+
+    max-width: 780px;
+
+    padding-left: 25px;
+
+    border-left: 4px solid var(--red);
+
+    color: #ddd;
+
+    font-size: 1rem;
+
+    line-height: 2;
+
+    white-space: pre-line;
+
+}
+
+
+.message-footer {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    max-width: 780px;
+
+    margin-top: 30px;
+
+}
+
+
+#message-counter {
+
+    color: #666;
+
+    font-size: 0.65rem;
+
+}
+
+
+/* ==================================================
+   PROFILE
+================================================== */
+
+.profile-layout {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 50px;
+
+}
+
+
+.profile-card {
+
+    padding: 30px;
+
+    border-left: 7px solid var(--red);
+
+    background:
+        rgba(255,255,255,0.03);
+
+}
+
+
+.profile-name {
+
+    font-family: "Anton", Impact, sans-serif;
+
+    font-size: 5rem;
+
+    font-style: italic;
+
+    color: var(--red);
+
+}
+
+
+.profile-class {
+
+    margin-bottom: 35px;
+
+    color: #aaa;
+
+    font-size: 0.7rem;
+
+    letter-spacing: 4px;
+
+}
+
+
+.profile-data {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 22px;
+
+}
+
+
+.profile-data div {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+}
+
+
+.profile-data span {
+
+    color: #666;
+
+    font-size: 0.6rem;
+
+}
+
+
+.profile-data strong {
+
+    color: white;
+
+    font-size: 0.75rem;
+
+}
+
+
+/* ==================================================
+   STATS
+================================================== */
+
+.stats {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 25px;
+
+}
+
+
+.stat-info {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-bottom: 7px;
+
+    font-size: 0.65rem;
+
+}
+
+
+.stat-info span:last-child {
+
+    color: var(--red);
+
+}
+
+
+.stat-bar {
+
+    height: 10px;
+
+    background: #222;
+
+    transform: skew(-15deg);
+
+}
+
+
+.stat-bar div {
+
+    height: 100%;
+
+    background: white;
+
+}
+
+
+/* CORRUPTED STAT */
+
+.corrupted {
+
+    color: #333;
+
+}
+
+
+.corrupted-bar {
+
+    height: 10px;
+
+    overflow: hidden;
+
+    background: #050505;
+
+    color: #111;
+
+    font-size: 0.6rem;
+
+    animation:
+        corruptedGlitch 0.2s infinite;
+
+}
+
+
+.corrupted small {
+
+    display: block;
+
+    margin-top: 6px;
+
+    color: var(--red);
+
+    font-size: 0.5rem;
+
+}
+
+
+@keyframes corruptedGlitch {
+
+    0% {
+
+        transform: translateX(0);
+
+    }
+
+    25% {
+
+        transform: translateX(5px);
+
+    }
+
+    50% {
+
+        transform: translateX(-4px);
+
+    }
+
+    75% {
+
+        transform: translateX(3px);
+
+    }
+
+    100% {
+
+        transform: translateX(0);
+
+    }
+
+}
+
+
+/* ==================================================
+   SKILLS
+================================================== */
+
+.skills-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 15px;
+
+}
+
+
+.skill-card {
+
+    min-height: 160px;
+
+    padding: 30px;
+
+    border: 1px solid #333;
+
+    background: #111;
+
+    color: white;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+
+}
+
+
+.skill-card:hover {
+
+    background: var(--red);
+
+    transform:
+        rotate(-1deg)
+        scale(1.02);
+
+}
+
+
+.skill-card.selected {
+
+    border-color: white;
+
+    background: var(--red);
+
+}
+
+
+.skill-number {
+
+    display: block;
+
+    margin-bottom: 30px;
+
+    color: var(--red);
+
+    font-size: 0.7rem;
+
+}
+
+
+.skill-card:hover .skill-number,
+.skill-card.selected .skill-number {
+
+    color: white;
+
+}
+
+
+.skill-card strong {
+
+    display: block;
+
+    font-size: 0.85rem;
+
+}
+
+
+.skill-card small {
+
+    display: block;
+
+    margin-top: 10px;
+
+    color: #777;
+
+}
+
+
+.skill-card:hover small,
+.skill-card.selected small {
+
+    color: #eee;
+
+}
+
+
+.skill-description {
+
+    min-height: 70px;
+
+    margin-top: 30px;
+
+    padding: 20px;
+
+    border-left: 3px solid var(--red);
+
+    color: #aaa;
+
+    font-size: 0.8rem;
+
+    line-height: 1.7;
+
+}
+
+
+.skill-effect {
+
+    min-height: 20px;
+
+    margin-top: 10px;
+
+    color: var(--red);
+
+    font-size: 0.65rem;
+
+    letter-spacing: 2px;
+
+}
+
+
+/* ==================================================
+   SECRET
+================================================== */
+
+.secret-content {
+
+    text-align: center;
+
+}
+
+
+.lock {
+
+    margin-bottom: 20px;
+
+    font-size: 4rem;
+
+}
+
+
+.secret-content h2 {
+
+    font-family: "Anton", Impact, sans-serif;
+
+    font-size: 4rem;
+
+    font-style: italic;
+
+}
+
+
+.secret-content p {
+
+    margin: 10px 0;
+
+    color: #777;
+
+}
+
+
+.secret-checklist {
+
+    width: 250px;
+
+    margin: 30px auto;
+
+    text-align: left;
+
+    color: #666;
+
+    font-size: 0.7rem;
+
+    line-height: 2.2;
+
+}
+
+
+.secret-checklist .complete {
+
+    color: var(--red);
+
+}
+
+
+.hidden {
+
+    display: none !important;
+
+}
+
+
+.final-message {
+
+    max-width: 700px;
+
+    margin: 40px auto;
+
+    padding: 40px;
+
+    border: 1px solid #333;
+
+    background:
+        rgba(255,255,255,0.03);
+
+    color: #ccc;
+
+    font-size: 0.9rem;
+
+    line-height: 2;
+
+}
+
+
+.final-message p {
+
+    margin-bottom: 20px;
+
+    color: #ccc;
+
+}
+
+
+.separator {
+
+    margin-top: 35px;
+
+    color: var(--red);
+
+    font-size: 0.6rem;
+
+    letter-spacing: 3px;
+
+}
+
+
+.heart {
+
+    margin-top: 20px;
+
+    color: var(--red);
+
+    font-size: 4rem;
+
+    animation:
+        heartBeat 1s infinite;
+
+}
+
+
+@keyframes heartBeat {
+
+    0%, 100% {
+
+        transform: scale(1);
+
+    }
+
+    50% {
+
+        transform: scale(1.2);
+
+    }
+
+}
+
+
+/* ==================================================
+   FINAL SCREEN
+================================================== */
+
+#final-screen {
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+}
+
+
+.final-screen-content h2 {
+
+    margin: 30px 0;
+
+    font-family: "Anton", Impact, sans-serif;
+
+    font-size:
+        clamp(
+            4rem,
+            10vw,
+            9rem
+        );
+
+    font-style: italic;
+
+    line-height: 0.8;
+
+    transform: skew(-7deg);
+
+    text-shadow:
+
+        5px 5px var(--red),
+
+        10px 10px white;
+
+}
+
+
+.final-screen-content h2 span {
+
+    display: block;
+
+    color: var(--red);
+
+}
+
+
+.final-screen-content > p {
+
+    color: #aaa;
+
+    font-size: 0.65rem;
+
+    letter-spacing: 4px;
+
+}
+
+
+.final-level {
+
+    margin: 30px;
+
+    color: var(--red);
+
+    font-weight: bold;
+
+    letter-spacing: 4px;
+
+}
+
+
+/* ==================================================
+   GLITCH
+================================================== */
+
+.glitch {
+
+    animation:
+        glitch 0.25s infinite;
+
+}
+
+
+@keyframes glitch {
+
+    0% {
+
+        transform:
+            skew(-7deg)
+            translate(0);
+
+    }
+
+    25% {
+
+        transform:
+            skew(-7deg)
+            translate(4px, -2px);
+
+    }
+
+    50% {
+
+        transform:
+            skew(-7deg)
+            translate(-4px, 2px);
+
+    }
+
+    75% {
+
+        transform:
+            skew(-7deg)
+            translate(2px, 1px);
+
+    }
+
+    100% {
+
+        transform:
+            skew(-7deg)
+            translate(0);
+
+    }
+
+}
+
+
+/* ==================================================
+   RESPONSIVE
+================================================== */
+
+@media (max-width: 750px) {
+
+
+    .corner {
+
+        font-size: 0.45rem;
+
+        letter-spacing: 1px;
+
+    }
+
+
+    .top-left,
+    .bottom-left {
+
+        left: 15px;
+
+    }
+
+
+    .top-right,
+    .bottom-right {
+
+        right: 15px;
+
+    }
+
+
+    .top-bar {
+
+        padding: 18px;
+
+        font-size: 0.48rem;
+
+    }
+
+
+    .main-content {
+
+        width: 90%;
+
+    }
+
+
+    .character-image {
+
+        display: none;
+
+    }
+
+
+    .greeting {
+
+        margin-bottom: 20px;
+
+    }
+
+
+    .greeting h2 {
+
+        font-size: 3.5rem;
+
+    }
+
+
+    .menu {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .menu-button {
+
+        padding: 15px;
+
+    }
+
+
+    .profile-layout {
+
+        grid-template-columns: 1fr;
+
+        gap: 30px;
+
+    }
+
+
+    .profile-name {
+
+        font-size: 4rem;
+
+    }
+
+
+    .skills-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .skill-card {
+
+        min-height: 120px;
+
+    }
+
+
+    .panel-content {
+
+        padding: 25px 0;
+
+    }
+
+
+    .panel-header {
+
+        padding: 18px;
+
+    }
+
+
+    .typed-message {
+
+        min-height: 240px;
+
+        font-size: 0.8rem;
+
+    }
+
+
+    .message-footer {
+
+        margin-top: 20px;
+
+    }
+
+
+    .final-message {
+
+        padding: 25px;
+
+        font-size: 0.75rem;
+
+    }
+
+
+}
+
+/* =========================================
+   SECRET UNLOCK
+========================================= */
+
+#secret-unlock-screen {
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    background:
+        radial-gradient(
+            circle,
+            #550000 0%,
+            #150000 40%,
+            #050505 100%
+        );
+
+    text-align: center;
+
+    z-index: 50;
+}
+
+#secret-unlock-screen.active {
+
+    display: flex;
+}
+
+.secret-unlock-content {
+
+    animation:
+        secretAppear 0.5s ease;
+}
+
+.secret-unlock-content h2 {
+
+    font-family: "Anton";
+
+    font-size:
+        clamp(
+            4rem,
+            12vw,
+            8rem
+        );
+
+    font-style: italic;
+
+    transform: skew(-8deg);
+
+    line-height: 0.9;
+
+    text-shadow:
+        5px 5px var(--red),
+        10px 10px white;
+}
+
+.secret-unlock-content span {
+
+    display: block;
+
+    color: var(--red);
+}
+
+.unlock-text {
+
+    margin-top: 20px;
+
+    color: #aaa;
+
+    letter-spacing: 4px;
+
+    font-size: 0.7rem;
+}
+
+@keyframes secretAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(0.5)
+            rotate(-5deg);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1)
+            rotate(0);
+    }
+}
